@@ -23,18 +23,19 @@ function App() {
 
         {/* Left Section (Profile) */}
         <div className="w-full md:w-1/4 bg-[var(--Dark-blue)] rounded-lg flex flex-col h-full min-h-0">
-          <div className="rounded-lg pb-[90px] pt-[35px] px-[30px] bg-[var(--Blue)] flex-grow">
+          <div className="rounded-lg w-full pb-[35px] md:pb-[90px] pt-[35px] px-[30px] bg-[var(--Blue)] flex-grow flex flex-row md:flex-col justify-start items-center md:items-start gap-5 md:gap-0">
             <img
               src={avatar}
               alt="Jeremy Robson"
-              className="w-[88px] h-[88px] rounded-full object-cover border-3 border-white mb-[40px]"
+              className="w-[70px] h-[70px] md:w-[88px] md:h-[88px] rounded-full object-cover border-3 border-white md:mb-[40px]"
             />
-            <p className="text-white text-[0.8rem] mb-1">Report for</p>
-            <h1 className="text-white text-4xl font-light leading-12">Jeremy Robson</h1>
+            <div className='w-2/3 md:w-full flex flex-col'>
+              <p className="text-white text-[0.8rem] mb-1">Report for</p>
+              <h1 className="text-white text-2xl md:text-4xl font-light leading-none md:leading-12">Jeremy Robson</h1>
+            </div>
           </div>
-
           {/* Timeframe Selection */}
-          <div className="bg-[var(--Dark-blue)] text-[var(--Desaturated-blue)] p-10 rounded-bl-lg rounded-br-lg flex md:flex-col gap-4 flex-grow justify-center md:justify-start">
+          <div className="bg-[var(--Dark-blue)] text-[var(--Desaturated-blue)] p-10 rounded-bl-lg rounded-br-lg flex md:flex-col gap-14 md:gap-4 flex-grow justify-center md:justify-start">
             <button
               onClick={() => setTimeframe("daily")}
               className={`transition cursor-pointer text-center md:text-left hover:text-white ${timeframe === "daily" ? "text-white" : ""}`}
@@ -86,7 +87,7 @@ function App() {
             return (
               <div
                 key={index}
-                className={`relative rounded-lg pt-15 overflow-hidden ${bgColorClass} flex flex-col h-full`}
+                className={`relative rounded-lg pt-10 md:pt-15 overflow-hidden ${bgColorClass} flex flex-col h-full`}
               >
                 {/* SVG Icon Positioned at the Top Right */}
                 {iconSrc && (
@@ -103,10 +104,12 @@ function App() {
                     <h2 className="text-white text-lg font-medium">{item.title}</h2>
                     <FontAwesomeIcon icon={faEllipsisH} className='text-white hover:text-[var(--Pale-Blue)] cursor-pointer' />
                   </div>
-                  <p className="text-white text-6xl font-light">{item.timeframes[timeframe].current}hrs</p>
+                <div className='flex flex-row md:flex-col items-center md:items-start justify-between'>
+                  <p className="text-white text-4xl md:text-6xl font-light">{item.timeframes[timeframe].current}hrs</p>
                   <p className="text-[var(--Pale-Blue)] text-sm">
                     Last week - {item.timeframes[timeframe].previous}hrs
                   </p>
+                </div>
                 </div>
               </div>
             );
